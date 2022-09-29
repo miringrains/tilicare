@@ -1,0 +1,135 @@
+- users
+id
+fname
+lname
+email
+phone
+password
+role (a|m|d|c)
+
+- driver_details
+id
+user_id
+date_of_birth
+photo_src
+address
+status
+blocked (default:0)
+rating
+
+- detailers
+id
+driver_id (null in case detailer not assigned)
+plate_no
+note (optional)
+status (default:1)
+
+- user_details
+id
+user_id
+rating
+address
+
+- car_brands
+id
+label
+created_ts
+
+- user_cars
+id
+user_id
+brand_id
+name
+model
+color (optional)
+created_ts
+
+- services
+id
+service
+is_additional
+price
+
+- service_fields
+id
+service_id
+field_label
+field
+type (number, text, float, date, etc.)
+min (optional)
+max (optional)
+required (default:1)
+
+- packages
+id
+package_label
+package_amount
+
+- package_services
+id
+package_id
+service_id
+
+- gift_cards
+id
+gift_type (service|package)
+target_id
+discount_type (%|$)
+discount_value
+created_ts
+expiry_ts
+
+- orders
+id
+user_id
+car_id
+discount_type (%|$|package) (optional)
+promo_code (optional) (promo code is package_id in case discount_type is discount_type)
+discount_amount (optional)
+actual_amount
+payable_amount
+status
+date
+time
+
+- order_services
+id
+service_id
+
+- order_service_values
+id
+order_services_id
+field_id
+value
+
+- order_notes
+id
+order_id
+type (customer_to_driver, driver_to_customer, driver_to_manager, manager_to_driver)
+note
+
+- order_reviews
+id
+order_id
+driver_rating
+user_rating
+date
+time
+
+- customer_payments
+id
+customer_id (users)
+order_id (optional)
+amount
+payable_via
+note (optional)
+date
+time
+
+- driver_jobs
+id
+driver_id
+order_id
+date
+time
+status
